@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeolocationService } from '../../../services/geolocation.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private geo: GeolocationService) { }
 
   ngOnInit() {
+    this.geo.currentLocation$.subscribe((loc) => console.log('the location ', loc));
   }
 
 }

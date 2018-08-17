@@ -12,12 +12,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     CommonModule,
     AngularFirestoreModule,
     AgmCoreModule.forRoot(environment.googleMapsKey),
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   exports: [
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AgmCoreModule
+    AgmCoreModule,
   ],
   declarations: []
 })
