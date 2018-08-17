@@ -1,6 +1,6 @@
 # ChatMap
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.0.
+Location based chat application. It allows authenticated users to add cool places to a map, these places will show up for other users based on their location. The places give access to a chat room where nearby users can chat with one another
 
 ## Development server
 
