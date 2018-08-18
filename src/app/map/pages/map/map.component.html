@@ -1,0 +1,3 @@
+<agm-map *ngIf="geo.currentLocation$ | async as loc" [latitude]="loc.lat" [longitude]="loc.lng">
+  <agm-marker [latitude]="loc.lat" [longitude]="loc.lng" ></agm-marker>
+</agm-map>

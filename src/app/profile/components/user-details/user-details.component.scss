@@ -1,0 +1,21 @@
+.image {
+    height: 50vw;
+      width: 50vw;
+     border: 5px solid #fff;
+     border-radius: 50%;
+     box-shadow: 0 0 5px gray;
+     display: block;
+     padding: 0;
+     margin-top: 0;
+     margin-bottom: 0;
+  }
+
+  .circle-pic{
+     width: 49vw;
+     height: 49vw;
+     -webkit-border-radius: 50%;
+     border-radius: 50%;
+     padding: 0;
+     margin-top: 0;
+     margin-bottom: 0;
+  }

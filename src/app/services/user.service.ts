@@ -20,9 +20,9 @@ export class UserService {
 
    }
 
-   public getCurrentUser(user: User) {
-    this.auth.user$.pipe(
-      switchMap((usr) => !!usr ? this.afs.docWithId$(`users/${user.uid}`) : of(null)),
+   public getCurrentUser() {
+    return this.auth.user$.pipe(
+      switchMap((usr) => !!usr ? this.afs.docWithId$(`users/${usr.uid}`) : of(null)),
       tap((usr) => this.currentuser$.next(usr))
     );
    }

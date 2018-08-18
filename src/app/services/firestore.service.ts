@@ -194,6 +194,18 @@ export class FirestoreService {
     });
   }
 
+  upsertNull<T>(ref: DocPredicate<T>, data: any) {
+    const doc = this.doc(ref).snapshotChanges()
+      .pipe(
+        retry(2),
+        take(1),
+    ).toPromise();
+
+    return doc.then(snap => {
+      return snap.payload.exists ? null : this.set(ref, data);
+    });
+  }
+
  async  deleteDoc<T>(ref: DocPredicate<T>) {
     let msg = '';
 

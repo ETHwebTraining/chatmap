@@ -1,0 +1,20 @@
+<div *ngIf="user$ | async as user" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="1%" style="height: 100%; ">
+ 
+  <div fxLayout="row">
+      <div fxFlex></div>
+      <div fxFlex class="image">
+        <img class="circle-pic" [src]="user.photoURL" alt="">
+      </div>
+      <div fxFlex></div>
+  </div>
+
+  <div fxLayout="row">
+      <div fxFlex="20%"></div>
+      <div fxFlex >
+        <h3 style="text-align: center; flex-wrap: nowrap">{{user.displayName}}</h3>
+      </div>
+      <div fxFlex fxFlex="20%"></div>
+  </div>
+ 
+
+</div>
