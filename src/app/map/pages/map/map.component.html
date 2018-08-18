@@ -1,3 +1,6 @@
-<agm-map *ngIf="geo.currentLocation$ | async as loc" [latitude]="loc.lat" [longitude]="loc.lng">
+<agm-map (zoomChange)="updateRad($event)" (centerChange)="updateCenter($event)" *ngIf="geo.currentLocation$ | async as loc" [latitude]="loc.lat" [longitude]="loc.lng" [zoom]="12">
   <agm-marker [latitude]="loc.lat" [longitude]="loc.lng" ></agm-marker>
+
+  <agm-marker *ngIf="places$ | async as places" [latitude]="places?.pos?.lat" [longitude]="places?.pos?.lng" ></agm-marker>
+
 </agm-map>
