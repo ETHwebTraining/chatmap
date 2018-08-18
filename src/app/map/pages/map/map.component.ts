@@ -37,7 +37,7 @@ export class MapComponent implements OnInit {
     this.center.next(center);
   }
   public toChat(place: Place) {
-    this.router.navigate(['/chat'], {queryParams: {placeId: place.id}});
+    this.router.navigate(['/chat'], {queryParams: {placeId: place.id, placeName: place.name}});
     console.log('going to chat');
   }
 

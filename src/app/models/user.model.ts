@@ -17,3 +17,16 @@ export interface Place {
     pos?: any;
     userId: string;
 }
+
+export interface AppMessage {
+    userId: string;
+    content: string;
+    photoURL: string;
+    displayName: string;
+}
+
+export interface PlaceLike {
+    id: string;
+    userId: string;
+    placeId: string;
+}

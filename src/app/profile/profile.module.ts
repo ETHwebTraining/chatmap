@@ -6,6 +6,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { AddPlaceComponent } from './components/add-place/add-place.component';
 import { AddPlaceModalComponent } from './components/add-place-modal/add-place-modal.component';
+import { MyPlacesComponent } from './components/my-places/my-places.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { AddPlaceModalComponent } from './components/add-place-modal/add-place-m
     ProfileComponent,
     UserDetailsComponent,
     AddPlaceComponent,
-    AddPlaceModalComponent
+    AddPlaceModalComponent,
+    MyPlacesComponent
   ],
   entryComponents: [
     AddPlaceModalComponent

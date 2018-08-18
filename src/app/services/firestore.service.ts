@@ -5,7 +5,8 @@ import * as firebase from 'firebase/app';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
-  AngularFirestoreCollection
+  AngularFirestoreCollection,
+  QueryFn
 } from 'angularfire2/firestore';
 import { Observable, of, combineLatest } from 'rxjs';
 import { map, take, tap, catchError, retry, switchMap, scan } from 'rxjs/operators';
@@ -48,7 +49,7 @@ export class FirestoreService {
       );
   }
 
-  col$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<T[]> {
+  col$<T>(ref: CollectionPredicate<T>, queryFn?: QueryFn): Observable<T[]> {
     return this.col(ref, queryFn).snapshotChanges()
       .pipe(
         map(docs => {
@@ -59,7 +60,7 @@ export class FirestoreService {
       );
   }
 
-  colWithIds$<T>(ref: CollectionPredicate<T>, queryFn?): Observable<any[]> {
+  colWithIds$<T>(ref: CollectionPredicate<T>, queryFn?: QueryFn): Observable<any[]> {
     return this.col(ref, queryFn).snapshotChanges()
       .pipe(
         map(actions => {

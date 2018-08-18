@@ -26,6 +26,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { NavComponent } from './components/nav/nav.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { IsTypingDirective } from './directives/is-typing.directive';
 
 @NgModule({
   imports: [
@@ -62,10 +63,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    IsTypingDirective
   ],
   declarations: [
-    NavComponent
+    NavComponent,
+    IsTypingDirective
   ]
 })
 export class SharedModule { }

@@ -2,7 +2,7 @@ import { Observable, from } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { UserProfile, Place } from '../../../models/user.model';
-import { switchMap, map, tap, catchError, take } from 'rxjs/operators';
+import { switchMap, take, filter, tap } from 'rxjs/operators';
 import { GeolocationService } from '../../../services/geolocation.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProfileComponent implements OnInit {
 
   public user$: Observable<UserProfile>;
+  public myPlaces$: Observable<Place[]>;
 
   constructor(
     public current: UserService,
@@ -28,6 +29,12 @@ export class ProfileComponent implements OnInit {
     this.user$ = this.current.getCurrentUser()
     .pipe(
       switchMap(() => this.current.currentuser$.asObservable())
+    );
+
+    this.myPlaces$ = this.current.currentuser$.pipe(
+      filter((res) => !!res),
+      switchMap(() => this.current.getMyPlaces()),
+      tap((plcs) => console.log('the places ', plcs))
     );
   }
 

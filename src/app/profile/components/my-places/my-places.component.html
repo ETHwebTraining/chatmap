@@ -1,0 +1,16 @@
+
+<h3 style="text-align: center">My Places</h3>
+<mat-list style="width: 100%" *ngIf="places.length > 0; else empty">
+  <div fxLayout="row" *ngFor="let place of places" >
+      <mat-list-item color="primary" fxFlex style="width: 100%"(click)="onToChat(place)" >
+          <h3>{{place.name}}</h3>
+          <mat-divider></mat-divider>
+      </mat-list-item>
+  </div>
+ 
+  
+</mat-list>
+
+<ng-template #empty>
+  <p style="text-align: center">You have no places yet, add one now!!</p>
+</ng-template>

@@ -1,5 +1,8 @@
-<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="5%" style="height: 100%; " *ngIf="user$ | async as user">
+<div fxLayout="column" fxLayoutAlign="start" fxLayoutGap="5%" style="height: 100%; width: 100% " *ngIf="user$ | async as user">
     <app-user-details [user]="user" ></app-user-details>
     <app-add-place [user]="user" (newLoc)="onAddPlace($event)" ></app-add-place>
+
+
+    <app-my-places *ngIf="myPlaces$ |async  as places" [places]="places"></app-my-places>
     
 </div>
