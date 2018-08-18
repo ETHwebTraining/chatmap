@@ -1,0 +1,34 @@
+<h2 mat-dialog-title style="text-align: center"> Add a new Place</h2>
+
+<mat-dialog-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%" style="height: 70%">
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field fxFlex>
+      <mat-placeholder>Name</mat-placeholder>
+      <input type="text" matInput [(ngModel)]="name">
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field fxFlex>
+      <mat-placeholder>Address</mat-placeholder>
+      <input type="text" matInput [formControl]="address">
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-list  fxLayout="column" fxLayoutGap="1%" fxFlex *ngIf="hits$ | async as hits">
+      <mat-list-item *ngFor="let hit of hits" (click)="onChooseAddy(hit)">
+        {{hit.address}}
+      </mat-list-item>
+    </mat-list>
+
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="danger" (click)="onCancel()" >Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="address.invalid" (click)="onProceed()">Finish</button>
+</mat-dialog-actions>

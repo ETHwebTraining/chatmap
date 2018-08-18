@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { UserProfile } from '../../../models/user.model';
 import { switchMap } from 'rxjs/operators';
@@ -11,17 +11,11 @@ import { switchMap } from 'rxjs/operators';
 })
 export class UserDetailsComponent implements OnInit {
 
-  public user$: Observable<UserProfile>;
+  @Input() user: UserProfile;
 
-  constructor(
-    public current: UserService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.user$ = this.current.getCurrentUser()
-    .pipe(
-      switchMap(() => this.current.currentuser$.asObservable())
-    );
   }
 
 }

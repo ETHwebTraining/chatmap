@@ -5,6 +5,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { AddPlaceComponent } from './components/add-place/add-place.component';
+import { AddPlaceModalComponent } from './components/add-place-modal/add-place-modal.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,14 @@ import { AddPlaceComponent } from './components/add-place/add-place.component';
     ProfileRoutingModule,
     SharedModule
   ],
-  declarations: [ProfileComponent, UserDetailsComponent, AddPlaceComponent]
+  declarations: [
+    ProfileComponent,
+    UserDetailsComponent,
+    AddPlaceComponent,
+    AddPlaceModalComponent
+  ],
+  entryComponents: [
+    AddPlaceModalComponent
+  ]
 })
 export class ProfileModule { }

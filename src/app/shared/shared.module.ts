@@ -20,9 +20,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { NavComponent } from './components/nav/nav.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -31,19 +34,25 @@ import { ReactiveFormsModule } from '@angular/forms';
     AgmCoreModule.forRoot(environment.googleMapsKey),
     AngularFireAuthModule,
     ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatInputModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   exports: [
     AngularFirestoreModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
     AgmCoreModule,
+    FormsModule,
+    HttpClientModule,
     FlexLayoutModule,
     MatInputModule,
     NavComponent,
@@ -51,7 +60,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   declarations: [
     NavComponent

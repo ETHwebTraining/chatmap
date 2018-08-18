@@ -1,10 +1,12 @@
-import { switchMap, shareReplay, filter } from 'rxjs/operators';
+import { environment } from './../../environments/environment';
+import { switchMap, shareReplay, filter, map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { CurrentLocation } from '../models/user.model';
+import { CurrentLocation, Place } from '../models/user.model';
 import { Observable, of, throwError } from 'rxjs';
 
 import * as firebase from 'firebase/app';
 import * as geofirex from 'geofirex';
+import { HttpParams, HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -18,7 +20,9 @@ export class GeolocationService {
   private geo = geofirex.init(firebase);
   private locations = this.geo.collection('places');
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
     this.currentLocation$ = this.getCurrentLocation();
   }
 
@@ -28,14 +32,42 @@ export class GeolocationService {
       filter((res) => !!res),
       switchMap((loc) => {
         const center = !!cntr ? this.geo.point(cntr.lat, cntr.lng) : this.geo.point(loc.lat, loc.lng);
-        const rad = radius || 0.5;
+        const rad = radius || 50;
         const field = 'pos';
         return this.locations.within(center, rad, field);
       })
     );
   }
 
+  public addPlace(place: Place) {
+    const offset = Math.random() / 100;
+    const point = this.geo.point(place.loc.lat + offset, place.loc.lng + offset);
 
+   return  this.locations.add({...place, pos: point.data});
+  }
+
+  public searchAddress(address: string) {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json`;
+    let params = new HttpParams();
+    params = params.set('address', address);
+    params = params.set('key', environment.googleMapsKey.apiKey);
+    return this.http.get(url, {params: params})
+    .pipe(
+      map((res: {results: any[]}) => this.mapResults(res.results)),
+      catchError(() => of([]))
+    );
+  }
+
+
+  private mapResults(res: any []) {
+    console.log(' the results ', res);
+    return res.map( val => {
+      return {
+        address: val.formatted_address,
+        location: {...val.geometry.location }
+      };
+    });
+  }
 
 
   private getCurrentLocation() {

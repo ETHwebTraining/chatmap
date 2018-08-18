@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { take, filter } from 'rxjs/operators';
+import {  Place } from './../../../models/user.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UserProfile } from '../../../models/user.model';
+import { MatDialog } from '@angular/material/dialog';
+import { AddPlaceModalComponent } from '../add-place-modal/add-place-modal.component';
 
 @Component({
   selector: 'app-add-place',
@@ -7,9 +12,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPlaceComponent implements OnInit {
 
-  constructor() { }
+  @Input() user: UserProfile;
+  @Output() newLoc = new EventEmitter<Place>();
+
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit() {
+  }
+
+
+  public openDailog() {
+    const dialogref = this.dialog.open(AddPlaceModalComponent, {
+      width: '300px',
+      height: '400px',
+      data: this.user
+    });
+
+    dialogref.afterClosed()
+      .pipe(
+        take(1),
+        filter((res) => !!res)
+      )
+      .subscribe(data => this.newLoc.emit(data));
   }
 
 }

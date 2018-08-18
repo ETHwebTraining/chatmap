@@ -1,8 +1,9 @@
-import { CurrentLocation } from './../../../models/user.model';
+import { CurrentLocation, Place } from './../../../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { GeolocationService } from '../../../services/geolocation.service';
 import { BehaviorSubject, Observable, combineLatest, pipe } from 'rxjs';
-import { switchMap, tap, throttleTime, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, tap, throttleTime, debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -11,13 +12,14 @@ import { switchMap, tap, throttleTime, debounceTime, distinctUntilChanged } from
 })
 export class MapComponent implements OnInit {
 
-  public radius = new BehaviorSubject<number>(0.5);
+  public radius = new BehaviorSubject<number>(50);
   public center = new BehaviorSubject<CurrentLocation>(null);
 
   public places$: Observable<any[]>;
 
   constructor(
-    public geo: GeolocationService
+    public geo: GeolocationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,11 +30,15 @@ export class MapComponent implements OnInit {
   }
 
   public updateRad(rad: number) {
-   this.radius.next(rad);
+   this.radius.next(rad * 50);
   }
 
   public updateCenter(center: CurrentLocation) {
     this.center.next(center);
+  }
+  public toChat(place: Place) {
+    this.router.navigate(['/chat'], {queryParams: {placeId: place.id}});
+    console.log('going to chat');
   }
 
 
