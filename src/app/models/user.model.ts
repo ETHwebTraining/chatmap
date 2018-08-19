@@ -26,6 +26,7 @@ export interface AppMessage {
     content: string;
     photoURL: string;
     displayName: string;
+    placeName?: string;
 }
 
 export interface PlaceLike {

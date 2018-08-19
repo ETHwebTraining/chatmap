@@ -9,7 +9,7 @@ const messaging = admin.messaging();
 const afs = admin.firestore();
 
 export async  function onNewMessage(data, context) {
-    const messge = data.data() as AppMessage;
+    const message = data.data() as AppMessage;
     const placeId = context.params.placeId;
 
     const likesRef = afs.collection('likes').where('placeId', '==', placeId);
@@ -22,7 +22,7 @@ export async  function onNewMessage(data, context) {
         const devicesQry = await Promise.all (userIds.map(async id => (await getuserDevices(id, t))));
 
         const devicessnap = flatten(devicesQry);
-        const recipients = devicessnap.filter(doc => doc.data().userId !== messge.userId);
+        const recipients = devicessnap.filter(doc => doc.data().userId !== message.userId);
         tokens = recipients.map(doc => doc.data().token as string);
 
         return t;
@@ -30,8 +30,8 @@ export async  function onNewMessage(data, context) {
 
     const payload: admin.messaging.MessagingPayload = {
             notification : {
-              body : 'This is an FCM notification message!',
-              title : 'FCM Message',
+              body : `New message in ${message.placeName}`,
+              title : `${message.displayName}: ${message.content.slice(0, 10)}`,
               }
     };
 

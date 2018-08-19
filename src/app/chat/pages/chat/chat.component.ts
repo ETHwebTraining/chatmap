@@ -1,4 +1,4 @@
-import { switchMap, tap, map, startWith, filter } from 'rxjs/operators';
+import { switchMap, tap, map, startWith, filter, take } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../../../services/chat.service';
 import { Observable } from 'rxjs';
@@ -51,7 +51,14 @@ export class ChatComponent implements OnInit {
 
 
   public onSend(message: AppMessage) {
-    this.chat.sendMessage(this.placeId, message);
+    this.placeName$.pipe(
+      filter(res => !!res),
+      take(1),
+      map((name) => {
+        return { ...message, placeName: name };
+      }),
+      switchMap((msg) => this.chat.sendMessage(this.placeId, msg))
+    ).subscribe();
   }
 
 }
