@@ -26,10 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.user$ = this.current.getCurrentUser()
-    .pipe(
-      switchMap(() => this.current.currentuser$.asObservable())
-    );
+    this.user$ =  this.current.currentuser$.asObservable();
 
     this.myPlaces$ = this.current.currentuser$.pipe(
       filter((res) => !!res),

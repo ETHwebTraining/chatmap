@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -10,44 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'chatMap';
-  public navOpened = false;
-  public navItems$: Observable<{icon: string, name: string}[]>;
 
+  public navOpened = false;
 
   constructor(
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    private current: UserService
   ) {
 
   }
 
   ngOnInit() {
-   this.navItems$ = this.auth.user$.pipe(
-    switchMap((user) => !!user ? this.setAuthOptions() : this.setNotAuthOptions())
-    );
-  }
-
-  public onNavigate(name: string) {
-    this.router.navigate([`/${name.toLowerCase()}`]);
-    this.navOpened = false;
+    this.auth.user$.pipe(
+      switchMap((user) => this.current.getCurrentUser(user)),
+      tap((user) =>  {if (!user) {this.router.navigate(['/auth']); } })
+    ).subscribe();
   }
 
 
-  private setAuthOptions() {
-    // this.router.navigate(['/profile']);
-   return of ([
-      {icon: 'person', name: 'Profile'},
-      {icon: 'map', name: 'Map'},
-      {icon: 'settings', name: 'settings'}
-    ]);
-  }
-
-
-  private setNotAuthOptions() {
-     this.router.navigate(['/auth']);
-    return of ([
-      {icon: 'input', name: 'auth'},
-    ]);
-  }
 }

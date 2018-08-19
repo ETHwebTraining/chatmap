@@ -1,11 +1,10 @@
 import { debounceTime, distinctUntilChanged, switchMap, filter, tap } from 'rxjs/operators';
-import { CurrentLocation, UserProfile, Place } from './../../../models/user.model';
+import { CurrentLocation } from './../../../models/user.model';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { GeolocationService } from '../../../services/geolocation.service';
 import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'app-add-place-modal',
@@ -14,8 +13,8 @@ import { Observable } from 'rxjs';
 })
 export class AddPlaceModalComponent implements OnInit {
 
-  public name = '';
-  public address: FormControl;
+
+  public form: FormGroup;
   public hits$: Observable<any[]>;
 
   public useCurrentLocation = true;
@@ -24,14 +23,29 @@ export class AddPlaceModalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<AddPlaceModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: UserProfile,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private geo: GeolocationService
   ) { }
 
   ngOnInit() {
-    this.address = this.fb.control('', [Validators.required]);
+    this.initForm();
     this.hits$ = this.searchAddy();
+  }
+
+  private initForm() {
+    let name = '';
+    let address =  '';
+
+    if (this.data.place) {
+      name = this.data.place.name;
+      address = this.data.place.address;
+    }
+
+    this.form = this.fb.group({
+      name: [name, [Validators.required]],
+      address: [address]
+    });
   }
 
   private searchAddy() {
@@ -70,12 +84,15 @@ export class AddPlaceModalComponent implements OnInit {
   }
 
   private createPlace(loc: CurrentLocation) {
-    const place: Place = {
-      name: this.name,
-      userId: this.data.id,
-      loc: loc
-    };
-    this.dialogRef.close(place);
+    this.dialogRef.close({ name: this.name.value, userId: this.data.id, loc: loc, address: this.chosenAddy.address || '' });
+  }
+
+  private get address() {
+    return this.form.get('address');
+  }
+
+  private get name() {
+   return this.form.get('name');
   }
 
 }

@@ -8,6 +8,8 @@ export interface UserProfile {
     displayName: string;
     photoURL: string;
     email: string;
+    placesDiscovered?: number;
+    placesLiked?: number;
 }
 
 export interface Place {
@@ -16,6 +18,7 @@ export interface Place {
     loc?: CurrentLocation;
     pos?: any;
     userId: string;
+    address?: string;
 }
 
 export interface AppMessage {
@@ -26,6 +29,12 @@ export interface AppMessage {
 }
 
 export interface PlaceLike {
+    id?: string;
+    userId: string;
+    placeId: string;
+}
+
+export interface Discovery {
     id?: string;
     userId: string;
     placeId: string;

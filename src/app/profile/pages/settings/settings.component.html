@@ -1,3 +1,14 @@
-<p>
-  settings works!
-</p>
+<div fxLayout="column" style="width: 100%">
+
+<div fxLayout="row" fxLayoutAlign="center " style="width: 100%">
+  <mat-form-field *ngIf="displayname" >
+    <mat-placeholder>Username</mat-placeholder>
+    <input type="text" matInput [formControl]="displayname">
+  </mat-form-field>
+</div>
+
+
+<div fxLayout="row" fxLayoutAlign="center " style="width: 100%">
+    <button mat-raised-button color="primary" (click)="auth.logOut()">Logout</button>
+  </div>
+</div>

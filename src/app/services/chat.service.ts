@@ -37,7 +37,7 @@ export class ChatService {
   }
 
   public likePlace(placeId: string) {
-    const like: PlaceLike = {userId: this.current.currentuser$.value.id, placeId  };
+    const like: PlaceLike = {userId: this.current.currentuser$.value.id, placeId: placeId  };
     const id = this.getLikeId(like.userId, like.placeId);
     return this.afs.addDocAt(`likes`, id, like);
   }

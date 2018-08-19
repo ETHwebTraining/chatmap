@@ -1,5 +1,5 @@
 import { environment } from './../../environments/environment';
-import { switchMap, shareReplay, filter, map, catchError } from 'rxjs/operators';
+import { switchMap, shareReplay, filter, map, catchError, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CurrentLocation, Place } from '../models/user.model';
 import { Observable, of, throwError } from 'rxjs';
@@ -7,6 +7,8 @@ import { Observable, of, throwError } from 'rxjs';
 import * as firebase from 'firebase/app';
 import * as geofirex from 'geofirex';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import { UserService } from './user.service';
+import { FirestoreService } from './firestore.service';
 
 
 @Injectable({
@@ -21,7 +23,9 @@ export class GeolocationService {
   private locations = this.geo.collection('places');
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private current: UserService,
+    private afs: FirestoreService
   ) {
     this.currentLocation$ = this.getCurrentLocation();
   }
@@ -44,6 +48,20 @@ export class GeolocationService {
     const point = this.geo.point(place.loc.lat + offset, place.loc.lng + offset);
 
    return  this.locations.add({...place, pos: point.data});
+  }
+
+  public discovePlace(place: Place) {
+    this.current.currentuser$.pipe(
+      filter(res => !!res),
+      map((usr) => usr.id),
+      switchMap((id) => {
+
+        if (place.userId === id) {return of(null); }
+
+       return  this.afs.upsertNull(`discoveries/${id}_${place.id}`, {placeId: place.id, userId: id});
+      }),
+      take(1),
+    ).subscribe();
   }
 
   public searchAddress(address: string) {

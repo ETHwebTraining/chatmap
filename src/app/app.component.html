@@ -1,6 +1,6 @@
 <mat-sidenav-container>
     <mat-sidenav [opened]="navOpened" (closedStart)="navOpened = false">
-        <mat-nav-list *ngIf="navItems$ | async as navItems">
+        <mat-nav-list >
 
             <mat-list-item>
                 <h4 style="text-align: center">Menu</h4>
@@ -8,15 +8,15 @@
 
             <ng-container *ngIf="auth.user$ | async">
 
-                    <mat-list-item routerLink="/profile">
+                    <mat-list-item routerLink="/profile" (click)="navOpened= false">
                         <mat-icon>person</mat-icon> <p>Profile</p>
                     </mat-list-item>
         
-                    <mat-list-item routerLink="/map">
+                    <mat-list-item routerLink="/map" (click)="navOpened= false">
                             <mat-icon>map</mat-icon> <p>Map</p>
                     </mat-list-item>
         
-                    <mat-list-item routerLink="/profile/settings">
+                    <mat-list-item routerLink="/profile/settings" (click)="navOpened= false">
                             <mat-icon>settings</mat-icon> <p>Settings</p>
                     </mat-list-item>
         

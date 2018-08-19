@@ -38,7 +38,7 @@ export class MapComponent implements OnInit {
   }
   public toChat(place: Place) {
     this.router.navigate(['/chat'], {queryParams: {placeId: place.id, placeName: place.name}});
-    console.log('going to chat');
+    this.geo.discovePlace(place);
   }
 
 

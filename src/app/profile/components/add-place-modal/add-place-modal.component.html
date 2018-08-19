@@ -1,25 +1,22 @@
 <h2 mat-dialog-title style="text-align: center"> Add a new Place</h2>
 
-<mat-dialog-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%" style="height: 70%">
+<mat-dialog-content  fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%" style="height: 70%">
+
+  <div style="width: 100%" [formGroup]="form">
 
   <div fxLayout="row" fxLayoutAlign="center center">
     <mat-form-field fxFlex>
       <mat-placeholder>Name</mat-placeholder>
-      <input type="text" matInput [(ngModel)]="name" required name="name" #n="ngModel">
+      <input type="text" matInput formControlName="name">
     </mat-form-field>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="start center" style="width: 100%">
-      <mat-list-item fxLayout="row">
-        <p fxFlex>My location </p> 
-        <mat-slide-toggle style="margin-left: 30px; margin-top: 15px" [(ngModel)]="useCurrentLocation" >{{useCurrentLocation ? 'Yes' : 'NO'}}</mat-slide-toggle>
-      </mat-list-item>
-    </div>
+
 
   <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!useCurrentLocation">
     <mat-form-field fxFlex>
       <mat-placeholder>Address</mat-placeholder>
-      <input type="text" matInput [formControl]="address">
+      <input type="text" matInput formControlName="address">
     </mat-form-field>
   </div>
 
@@ -32,10 +29,19 @@
 
 
   </div>
+</div>
+
+
+  <div fxLayout="row" fxLayoutAlign="start center" style="width: 100%">
+      <mat-list-item fxLayout="row">
+        <p fxFlex>My location </p> 
+        <mat-slide-toggle style="margin-left: 30px; margin-top: 15px" [(ngModel)]="useCurrentLocation" >{{useCurrentLocation ? 'Yes' : 'NO'}}</mat-slide-toggle>
+      </mat-list-item>
+  </div>
 
 </mat-dialog-content>
 
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
   <button mat-raised-button color="danger" (click)="onCancel()" >Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="(address.invalid && !useCurrentLocation) || n.invalid" (click)="onProceed()">Finish</button>
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="onProceed()">Finish</button>
 </mat-dialog-actions>

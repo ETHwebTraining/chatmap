@@ -56,7 +56,9 @@ export class AuthService {
     const user: UserProfile = {
       displayName: usr.displayName || 'New user',
       email: usr.email || 'None',
-      photoURL: usr.photoURL || ''
+      photoURL: usr.photoURL || '',
+      placesDiscovered: 0,
+      placesLiked: 0
     };
 
     return this.afs.upsertNull(`users/${usr.uid}`, user);
