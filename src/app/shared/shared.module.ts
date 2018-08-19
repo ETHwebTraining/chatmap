@@ -28,6 +28,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IsTypingDirective } from './directives/is-typing.directive';
+import { FcmDirective } from './directives/fcm.directive';
 
 @NgModule({
   imports: [
@@ -67,11 +68,13 @@ import { IsTypingDirective } from './directives/is-typing.directive';
     MatDialogModule,
     MatSnackBarModule,
     IsTypingDirective,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FcmDirective
   ],
   declarations: [
     NavComponent,
-    IsTypingDirective
+    IsTypingDirective,
+    FcmDirective
   ]
 })
 export class SharedModule { }
