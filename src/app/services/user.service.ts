@@ -30,9 +30,17 @@ export class UserService {
    public getMyPlaces() {
     return combineLatest(this.getCreatedPlaces(), this.getLikedPlaces())
     .pipe(
-      map(([cre, lik]) => cre.concat(lik))
+      map(([cre, lik]) => this.filterRepeats(cre, lik))
     );
    }
+
+
+
+  private filterRepeats(cre: any[], lik: any[]) {
+    const creIds = cre.map(places => places.id);
+    const newLikes = lik.filter(like => creIds.indexOf(like.id) < 0);
+    return cre.concat(newLikes);
+  }
 
    private getLikedPlaces() {
     return this.afs.colWithIds$('likes', ref => ref.where('userId', '==', this.currentuser$.value.id))

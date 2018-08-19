@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 
 
   private setAuthOptions() {
-    this.router.navigate(['/profile']);
+    // this.router.navigate(['/profile']);
    return of ([
       {icon: 'person', name: 'Profile'},
       {icon: 'map', name: 'Map'},
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
 
 
   private setNotAuthOptions() {
-    this.router.navigate(['/auth']);
+     this.router.navigate(['/auth']);
     return of ([
       {icon: 'input', name: 'auth'},
     ]);

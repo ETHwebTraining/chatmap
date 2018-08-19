@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
     this.myPlaces$ = this.current.currentuser$.pipe(
       filter((res) => !!res),
       switchMap(() => this.current.getMyPlaces()),
-      tap((plcs) => console.log('the places ', plcs))
     );
   }
 

@@ -2,7 +2,7 @@ import { FirestoreService } from './firestore.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
-import { Observable,  of, from } from 'rxjs';
+import { Observable,  of, from, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserProfile } from '../models/user.model';
 
@@ -29,7 +29,7 @@ export class AuthService {
     .pipe(
       tap((usr) => this.updateUserData(usr.user)),
       map(() => 'Sign in Success'),
-      catchError(() => of('Sign in failed'))
+      catchError(() => throwError('Sign in failed'))
     );
   }
 
@@ -38,7 +38,7 @@ export class AuthService {
     .pipe(
       tap((usr) => this.updateUserData(usr.user)),
       map(() => 'Sign in Success'),
-      catchError((err) => of(err.message))
+      catchError((err) => throwError(err.message))
     );
   }
 
@@ -48,7 +48,7 @@ export class AuthService {
    .pipe(
     tap((usr) => this.updateUserData(usr.user)),
     map(() => 'Sign in Success'),
-    catchError((err) => of(err.message))
+    catchError((err) => throwError(err.message))
   );
   }
 

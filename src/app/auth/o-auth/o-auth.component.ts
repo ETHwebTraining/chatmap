@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-o-auth',
@@ -10,7 +11,8 @@ import { take } from 'rxjs/operators';
 export class OAuthComponent implements OnInit {
 
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -20,7 +22,7 @@ export class OAuthComponent implements OnInit {
     this.auth.googleLogin()
     .pipe(
       take(1)
-    ).subscribe((msg) => console.log('the response ', msg));
+    ).subscribe((msg) => this.router.navigate(['/profile']));
   }
 
 }

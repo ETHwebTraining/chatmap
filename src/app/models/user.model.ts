@@ -26,7 +26,7 @@ export interface AppMessage {
 }
 
 export interface PlaceLike {
-    id: string;
+    id?: string;
     userId: string;
     placeId: string;
 }

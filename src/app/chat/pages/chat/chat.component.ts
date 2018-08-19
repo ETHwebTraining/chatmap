@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../../../services/chat.service';
 import { Observable } from 'rxjs';
 import { AppMessage } from '../../../models/user.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { Location } from '@angular/common';
 
@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
     private chat: ChatService,
     public current: UserService,
     private AR: ActivatedRoute,
-    public loc: Location
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -43,6 +43,10 @@ export class ChatComponent implements OnInit {
     this.placeName$ = this.AR.queryParamMap.pipe(
       map((data) => data.get('placeName')),
     );
+  }
+
+  public back() {
+    this.router.navigate(['../'], {relativeTo: this.AR});
   }
 
 

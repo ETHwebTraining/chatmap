@@ -1,3 +1,9 @@
-<button mat-icon-button >
-  <mat-icon>favorite_border</mat-icon>
+<button color="accent" (click)="onUnlike()" mat-icon-button  *ngIf="isLiked$ | async; else notLiked">
+  <mat-icon>favorite</mat-icon>
 </button>
+
+<ng-template #notLiked>
+    <button mat-icon-button (click)="onLike()">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+</ng-template>

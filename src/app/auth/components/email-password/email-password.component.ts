@@ -33,7 +33,7 @@ export class EmailPasswordComponent implements OnInit {
     .pipe(
       take(1)
     )
-    .subscribe((msg) => console.log('the message ', msg));
+    .subscribe((msg) => this.router.navigate(['/profile']));
   }
 
   public signUp() {
@@ -41,7 +41,7 @@ export class EmailPasswordComponent implements OnInit {
     .pipe(
       take(1)
     )
-    .subscribe((msg) => console.log('the message ', msg));
+    .subscribe((msg) => this.router.navigate(['/profile']));
   }
 
   public get email() {
