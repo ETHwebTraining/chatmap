@@ -22,6 +22,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import { NavComponent } from './components/nav/nav.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -45,7 +46,8 @@ import { IsTypingDirective } from './directives/is-typing.directive';
     MatSidenavModule,
     MatListModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule
   ],
   exports: [
     AngularFirestoreModule,
@@ -64,7 +66,8 @@ import { IsTypingDirective } from './directives/is-typing.directive';
     MatListModule,
     MatDialogModule,
     MatSnackBarModule,
-    IsTypingDirective
+    IsTypingDirective,
+    MatSlideToggleModule
   ],
   declarations: [
     NavComponent,

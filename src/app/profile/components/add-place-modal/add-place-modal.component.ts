@@ -18,6 +18,8 @@ export class AddPlaceModalComponent implements OnInit {
   public address: FormControl;
   public hits$: Observable<any[]>;
 
+  public useCurrentLocation = true;
+
   private chosenAddy: { address: string, location: CurrentLocation };
 
   constructor(
@@ -54,10 +56,24 @@ export class AddPlaceModalComponent implements OnInit {
   }
 
   public onProceed() {
+    this.useCurrentLocation ? this.createWithCurrentLocation() :
+    this.createWithChosenLocation();
+  }
+
+  private createWithCurrentLocation() {
+    this.geo.currentLocation$
+    .subscribe((loc) => this.createPlace(loc));
+  }
+
+  private createWithChosenLocation() {
+    this.createPlace(this.chosenAddy.location);
+  }
+
+  private createPlace(loc: CurrentLocation) {
     const place: Place = {
       name: this.name,
       userId: this.data.id,
-      loc: this.chosenAddy.location
+      loc: loc
     };
     this.dialogRef.close(place);
   }

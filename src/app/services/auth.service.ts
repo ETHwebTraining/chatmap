@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from 'firebase';
 import { Observable,  of, from, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, shareReplay } from 'rxjs/operators';
 import { UserProfile } from '../models/user.model';
 
 import * as firebase from 'firebase/app';
@@ -20,7 +20,7 @@ export class AuthService {
     private afAuth: AngularFireAuth
   ) {
 
-    this.user$ = this.afAuth.authState;
+    this.user$ = this.afAuth.authState.pipe(shareReplay(1));
   }
 
 

@@ -7,6 +7,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { AddPlaceComponent } from './components/add-place/add-place.component';
 import { AddPlaceModalComponent } from './components/add-place-modal/add-place-modal.component';
 import { MyPlacesComponent } from './components/my-places/my-places.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MyPlacesComponent } from './components/my-places/my-places.component';
     UserDetailsComponent,
     AddPlaceComponent,
     AddPlaceModalComponent,
-    MyPlacesComponent
+    MyPlacesComponent,
+    SettingsComponent
   ],
   entryComponents: [
     AddPlaceModalComponent

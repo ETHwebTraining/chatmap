@@ -1,9 +1,8 @@
-import { Observable, BehaviorSubject, of, forkJoin, combineLatest } from 'rxjs';
+import { BehaviorSubject, of, combineLatest } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { UserProfile, PlaceLike } from '../models/user.model';
 import { AuthService } from './auth.service';
-import { User } from 'firebase';
-import { switchMap, tap, filter, take, map, startWith } from 'rxjs/operators';
+import { switchMap, tap, filter, map, startWith } from 'rxjs/operators';
 import { FirestoreService } from './firestore.service';
 
 @Injectable({
@@ -46,7 +45,7 @@ export class UserService {
     return this.afs.colWithIds$('likes', ref => ref.where('userId', '==', this.currentuser$.value.id))
     .pipe(
       map((likes: PlaceLike []) => likes.map(like => like.placeId)),
-      switchMap((ids) => forkJoin(
+      switchMap((ids) => combineLatest(
         ids.map(id => this.getPlace(id))
       )),
       startWith([])
@@ -57,7 +56,6 @@ export class UserService {
     return this.afs.colWithIds$('places', ref => ref.where('userId', '==', this.currentuser$.value.id))
     .pipe(
       filter(res => !!res),
-      take(1),
       startWith([])
     );
    }
@@ -66,7 +64,6 @@ export class UserService {
     return this.afs.docWithId$(`places/${placeId}`)
     .pipe(
       filter(res => !!res),
-      take(1)
     );
    }
 }

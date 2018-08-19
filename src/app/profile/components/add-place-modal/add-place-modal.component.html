@@ -5,11 +5,18 @@
   <div fxLayout="row" fxLayoutAlign="center center">
     <mat-form-field fxFlex>
       <mat-placeholder>Name</mat-placeholder>
-      <input type="text" matInput [(ngModel)]="name">
+      <input type="text" matInput [(ngModel)]="name" required name="name" #n="ngModel">
     </mat-form-field>
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="start center" style="width: 100%">
+      <mat-list-item fxLayout="row">
+        <p fxFlex>My location </p> 
+        <mat-slide-toggle style="margin-left: 30px; margin-top: 15px" [(ngModel)]="useCurrentLocation" >{{useCurrentLocation ? 'Yes' : 'NO'}}</mat-slide-toggle>
+      </mat-list-item>
+    </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="!useCurrentLocation">
     <mat-form-field fxFlex>
       <mat-placeholder>Address</mat-placeholder>
       <input type="text" matInput [formControl]="address">
@@ -30,5 +37,5 @@
 
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
   <button mat-raised-button color="danger" (click)="onCancel()" >Cancel</button>
-  <button mat-raised-button color="primary" [disabled]="address.invalid" (click)="onProceed()">Finish</button>
+  <button mat-raised-button color="primary" [disabled]="(address.invalid && !useCurrentLocation) || n.invalid" (click)="onProceed()">Finish</button>
 </mat-dialog-actions>

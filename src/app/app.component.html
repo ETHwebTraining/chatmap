@@ -1,12 +1,29 @@
 <mat-sidenav-container>
     <mat-sidenav [opened]="navOpened" (closedStart)="navOpened = false">
         <mat-nav-list *ngIf="navItems$ | async as navItems">
+
             <mat-list-item>
                 <h4 style="text-align: center">Menu</h4>
             </mat-list-item>
-            <mat-list-item *ngFor="let item of navItems" (click)="onNavigate(item.name)">
-                <mat-icon>{{item.icon}}</mat-icon> <p>{{item.name}}</p>
-            </mat-list-item>
+
+            <ng-container *ngIf="auth.user$ | async">
+
+                    <mat-list-item routerLink="/profile">
+                        <mat-icon>person</mat-icon> <p>Profile</p>
+                    </mat-list-item>
+        
+                    <mat-list-item routerLink="/map">
+                            <mat-icon>map</mat-icon> <p>Map</p>
+                    </mat-list-item>
+        
+                    <mat-list-item routerLink="/profile/settings">
+                            <mat-icon>settings</mat-icon> <p>Settings</p>
+                    </mat-list-item>
+        
+            </ng-container>
+
+
+
         </mat-nav-list>
     </mat-sidenav>
 

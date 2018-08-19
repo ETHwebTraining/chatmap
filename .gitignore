@@ -40,4 +40,5 @@ Thumbs.db
 
 /functions/node_modules
 /functions/lib
+/functions/tsconfig.json
 

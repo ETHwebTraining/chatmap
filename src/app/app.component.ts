@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
 
   constructor(
-    private auth: AuthService,
+    public auth: AuthService,
     private router: Router
   ) {
 

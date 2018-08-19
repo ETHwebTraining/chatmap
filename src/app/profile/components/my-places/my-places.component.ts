@@ -16,8 +16,16 @@ export class MyPlacesComponent implements OnInit {
   ngOnInit() {
   }
 
-  onToChat(place: Place) {
+ public onToChat(place: Place) {
     this.router.navigate(['/chat'], {queryParams: {placeId: place.id, placeName: place.name}});
+  }
+
+  public onEdit(place: Place) {
+
+  }
+
+  public onDelete(place: Place) {
+
   }
 
 }
