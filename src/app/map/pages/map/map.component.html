@@ -1,5 +1,7 @@
 <agm-map (zoomChange)="updateRad($event)" (centerChange)="updateCenter($event)" *ngIf="geo.currentLocation$ | async as loc" [latitude]="loc.lat" [longitude]="loc.lng" [zoom]="12">
-  <agm-marker [latitude]="loc.lat" [longitude]="loc.lng" ></agm-marker>
+  <agm-marker [latitude]="loc.lat" [longitude]="loc.lng" >
+      <agm-info-window  [isOpen]="true">YOU</agm-info-window>
+  </agm-marker>
 
   <ng-container *ngIf="places$ | async as places">
  

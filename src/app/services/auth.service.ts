@@ -56,7 +56,7 @@ export class AuthService {
     const user: UserProfile = {
       displayName: usr.displayName || 'New user',
       email: usr.email || 'None',
-      photoURL: usr.photoURL || '',
+      photoURL: usr.photoURL || '../../assets/images/newUser.png',
       placesDiscovered: 0,
       placesLiked: 0
     };
