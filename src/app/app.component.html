@@ -2,6 +2,8 @@
     <mat-sidenav [opened]="navOpened" (closedStart)="navOpened = false">
         <mat-nav-list >
 
+            <!-- Defining the nav items of the side nav using mat-list-item -->
+
             <mat-list-item>
                 <h4 style="text-align: center">Menu</h4>
             </mat-list-item>
@@ -28,8 +30,10 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+        <!-- All the content of the app show up here -->
         <app-nav appFcm  (toggleNav)="navOpened = !navOpened"></app-nav>
 
         <router-outlet></router-outlet>
     </mat-sidenav-content>
+
 </mat-sidenav-container>

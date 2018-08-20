@@ -23,7 +23,7 @@ export async  function onNewMessage(data, context) {
 
         const devicessnap = flatten(devicesQry);
         const recipients = devicessnap.filter(doc => doc.data().userId !== message.userId);
-        tokens = recipients.map(doc => doc.data().token as string);
+        tokens = devicessnap.map(doc => doc.data().token as string);
 
         return t;
     });
@@ -35,7 +35,12 @@ export async  function onNewMessage(data, context) {
               }
     };
 
-    return messaging.sendToDevice(tokens, payload);
+    console.log ('the tokens ', tokens);
+
+    if (!tokens.length) { return null; }
+
+    return messaging.sendToDevice(tokens, payload)
+    .then(() => console.log('notifs sent'));
 }
 
 

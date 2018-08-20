@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase), // initializing firebase with the app
     SharedModule,
     AppRoutingModule,
   ],

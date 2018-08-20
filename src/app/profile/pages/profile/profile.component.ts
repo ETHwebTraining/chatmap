@@ -26,8 +26,10 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
+    // initilizing the user$ with the user from the service
     this.user$ =  this.current.currentuser$.asObservable();
 
+    // initializing the myPlaces$ with the places from the service
     this.myPlaces$ = this.current.currentuser$.pipe(
       filter((res) => !!res),
       switchMap(() => this.current.getMyPlaces()),
@@ -35,6 +37,9 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  // event handle for when a new place has been created
+  // saves the place to the db using the service
+  // then shows the user some feedback
   public onAddPlace(place: Place) {
    from(this.geo.addPlace(place))
    .pipe(
@@ -45,6 +50,7 @@ export class ProfileComponent implements OnInit {
    );
   }
 
+// displays a given message using the snackbar service
   private showMessage(msg: string) {
     this.snackBar.open(msg, '', {duration: 3000});
   }

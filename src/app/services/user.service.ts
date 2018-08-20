@@ -20,6 +20,10 @@ export class UserService {
 
    }
 
+   /*
+    recieves a firebase user or null, if user then fetches the data for that user from the db
+    then updates the currentuser$ accordingly, if null then updates currentUser$ with null
+   */
    public getCurrentUser(user: User) {
     if (user) {
       return this.afs.docWithId$(`users/${user.uid}`)
@@ -34,6 +38,10 @@ export class UserService {
 
    }
 
+
+// combines the places returned from the created and liked streams
+// then filters them for uniqueness
+
    public getMyPlaces() {
     return combineLatest(this.getCreatedPlaces(), this.getLikedPlaces())
     .pipe(
@@ -41,6 +49,7 @@ export class UserService {
     );
    }
 
+   // used to update the current user
    public updateCurrentUser(user: UserProfile) {
      this.currentuser$.next(user);
      const newUser = {...user};
@@ -49,13 +58,17 @@ export class UserService {
    }
 
 
-
+// makes sure that the same value does not appear in both arrays
   private filterRepeats(cre: any[], lik: any[]) {
     const creIds = cre.map(places => places.id);
     const newLikes = lik.filter(like => creIds.indexOf(like.id) < 0);
     return cre.concat(newLikes);
   }
 
+/*
+  querys the db for all documents that represent that the user has liked a place, then maps them to
+  the place documents that then represent
+*/
    private getLikedPlaces() {
     return this.afs.colWithIds$('likes', ref => ref.where('userId', '==', this.currentuser$.value.id))
     .pipe(
@@ -67,6 +80,11 @@ export class UserService {
     );
    }
 
+   /*
+  querys the db for all documents that represent that the user has creted a place, then maps them to
+  the place documents that then represent
+*/
+
    private getCreatedPlaces() {
     return this.afs.colWithIds$('places', ref => ref.where('userId', '==', this.currentuser$.value.id))
     .pipe(
@@ -75,6 +93,7 @@ export class UserService {
     );
    }
 
+   // given the document id of a place, retuns the data of that document
    private getPlace(placeId: string) {
     return this.afs.docWithId$(`places/${placeId}`)
     .pipe(

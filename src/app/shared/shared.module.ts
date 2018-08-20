@@ -30,6 +30,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { IsTypingDirective } from './directives/is-typing.directive';
 import { FcmDirective } from './directives/fcm.directive';
 
+
+
+/*
+using the shared module to import an export all shared dependencies of the
+application
+*/
+
 @NgModule({
   imports: [
     CommonModule,

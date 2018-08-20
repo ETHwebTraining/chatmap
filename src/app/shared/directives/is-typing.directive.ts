@@ -10,7 +10,7 @@ import { ChatService } from '../../services/chat.service';
 })
 export class IsTypingDirective implements OnInit  {
 
-  private text$ = new Subject<string>();
+  private text$ = new Subject<string>(); // used to multi cast new values
   private placeId: string;
 
   constructor(
@@ -21,6 +21,14 @@ export class IsTypingDirective implements OnInit  {
   ) { }
 
   ngOnInit() {
+
+    /*
+      getting the place id from the url then switching to the text stream
+      throttling it for values within a 2 second window then updationg the
+      is typing property on the document. the stream completes once we start navigating
+      else where
+    */
+
     this.AR.queryParamMap
     .pipe(
       map((data) => data.get('placeId')),
@@ -33,18 +41,22 @@ export class IsTypingDirective implements OnInit  {
   ).subscribe();
   }
 
+  // listens for when the user is typing and then nexts the string to be updated in the db
   @HostListener('input', ['$event']) typing() {
     this.text$.next(`${this.current.currentuser$.value.displayName} is typing...`);
   }
 
+  // listens for when the user leaves the input, then updates the value in the db with an empty string
   @HostListener('blur', ['$event']) blur() {
     this.updateIstypingStream(this.placeId, '');
   }
 
+  // updates the is typing property for the place in the db
   private updateIstypingStream(placeId: string, val: string ) {
     return from(this.chat.updateIsTyping(placeId, val ));
   }
 
+  // returns an observable of navigation start event
   private navStart() {
     return this.router.events
     .pipe(
