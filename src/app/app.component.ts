@@ -1,7 +1,6 @@
-import { tap, map, switchMap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 

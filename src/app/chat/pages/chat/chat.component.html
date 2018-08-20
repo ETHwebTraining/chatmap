@@ -16,13 +16,12 @@
 
     </mat-toolbar>
 </div> 
-<div *ngIf="current.currentuser$ | async as user" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="5%" style="height: 90%; ">
+<div *ngIf="current.currentuser$ | async as user" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="10%" style="height: 100%; ">
 
-    <div fxLayout="row" style="width: 100%">
         <app-message-list [messages$]="messages$"></app-message-list>
-    </div>
+
    
-    <div  fxLayout="row" style="position: fixed; bottom: 0; left:0; width: 100%; padding: 0">
+    <div  fxLayout="row" >
         <app-send-message [isTyping$]="isTyping$" (msg)="onSend($event)" fxFlex [user]="user"></app-send-message>
     </div>
 

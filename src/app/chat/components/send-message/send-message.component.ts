@@ -1,11 +1,9 @@
-import { map, switchMap } from 'rxjs/operators';
 import { AppMessage } from './../../../models/user.model';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserProfile } from '../../../models/user.model';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
-import { ChatService } from '../../../services/chat.service';
+
 
 @Component({
   selector: 'app-send-message',
