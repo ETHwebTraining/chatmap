@@ -3,6 +3,6 @@
     <app-add-place [user]="user" (newLoc)="onAddPlace($event)" ></app-add-place>
 
 
-    <app-my-places *ngIf="myPlaces$ |async  as places" [places]="places"></app-my-places>
+    <app-my-places [user]="user" (edit)="onEditPlace($event)" (delete)="onDeletePlace($event)" *ngIf="myPlaces$ |async  as places" [places]="places"></app-my-places>
     
 </div>

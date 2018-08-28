@@ -1,0 +1,11 @@
+<h2 mat-dialog-title style="text-align: center"> Are you sure?</h2>
+
+<mat-dialog-content style="width: 100%; height: 100%">
+  <p> {{data}}</p>
+</mat-dialog-content>
+  
+
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-raised-button color="primary" (click)="no()" >No</button>
+  <button mat-raised-button color="warn" (click)="yes()">Yes</button>
+</mat-dialog-actions>

@@ -84,7 +84,13 @@ export class AddPlaceModalComponent implements OnInit {
   }
 
   private createPlace(loc: CurrentLocation) {
-    this.dialogRef.close({ name: this.name.value, userId: this.data.id, loc: loc, address: this.chosenAddy.address || '' });
+    this.dialogRef.close({
+      ...this.data.place,
+      name: this.name.value,
+      userId: this.data.user.id,
+      loc: loc,
+      address: !!this.chosenAddy ? this.chosenAddy.address : ''
+    });
   }
 
   private get address() {

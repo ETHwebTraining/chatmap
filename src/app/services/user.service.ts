@@ -45,7 +45,8 @@ export class UserService {
    public getMyPlaces() {
     return combineLatest(this.getCreatedPlaces(), this.getLikedPlaces())
     .pipe(
-      map(([cre, lik]) => this.filterRepeats(cre, lik))
+      map(([cre, lik]) => this.filterRepeats(cre, lik)),
+      tap((places) => console.log('the places ', places))
     );
    }
 

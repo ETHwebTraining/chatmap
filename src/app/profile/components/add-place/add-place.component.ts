@@ -27,7 +27,7 @@ export class AddPlaceComponent implements OnInit {
     const dialogref = this.dialog.open(AddPlaceModalComponent, {
       width: '300px',
       height: '400px',
-      data: this.user
+      data: {user: this.user}
     });
 
     dialogref.afterClosed()

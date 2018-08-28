@@ -59,6 +59,18 @@ export class GeolocationService {
     return this.locations.add({ ...place, pos: point.data });
   }
 
+
+  public editPlace(place: Place) {
+    const newPlace = {...place};
+    delete newPlace.id;
+    console.log('editing  at ', place.id, newPlace );
+    return this.afs.update(`places/${place.id}`, newPlace);
+  }
+
+  public deletePlace(place: Place) {
+    return this.afs.deleteDoc(`places/${place.id}`);
+  }
+
   /*
    allows a user to discover a place by adding info like the user and place id
    under a discoveries collection in the db if the place in question is one that

@@ -11,24 +11,25 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AgmCoreModule } from '@agm/core';
 
 // angular flex area
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // angular material dependencies
-import {MatInputModule} from '@angular/material/input';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { NavComponent } from './components/nav/nav.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { IsTypingDirective } from './directives/is-typing.directive';
 import { FcmDirective } from './directives/fcm.directive';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
 
 
@@ -76,12 +77,17 @@ application
     MatSnackBarModule,
     IsTypingDirective,
     MatSlideToggleModule,
-    FcmDirective
+    FcmDirective,
+    ConfirmModalComponent
   ],
   declarations: [
     NavComponent,
     IsTypingDirective,
-    FcmDirective
+    FcmDirective,
+    ConfirmModalComponent
+  ],
+  entryComponents: [
+    ConfirmModalComponent
   ]
 })
 export class SharedModule { }

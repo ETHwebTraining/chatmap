@@ -21,10 +21,12 @@ import { SettingsComponent } from './pages/settings/settings.component';
     AddPlaceComponent,
     AddPlaceModalComponent,
     MyPlacesComponent,
-    SettingsComponent
+    SettingsComponent,
+    // ConfirmModalComponent
   ],
   entryComponents: [
-    AddPlaceModalComponent
+    AddPlaceModalComponent,
+    // ConfirmModalComponent
   ]
 })
 export class ProfileModule { }

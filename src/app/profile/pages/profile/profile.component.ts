@@ -50,6 +50,15 @@ export class ProfileComponent implements OnInit {
    );
   }
 
+  public onEditPlace(place: Place) {
+    console.log('editing ', place);
+    this.geo.editPlace(place);
+  }
+
+  public onDeletePlace(place: Place) {
+    this.geo.deletePlace(place);
+  }
+
 // displays a given message using the snackbar service
   private showMessage(msg: string) {
     this.snackBar.open(msg, '', {duration: 3000});
