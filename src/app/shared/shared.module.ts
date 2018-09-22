@@ -20,6 +20,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   declarations: [
 
@@ -53,7 +59,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ]
 })
 export class SharedModule { }
