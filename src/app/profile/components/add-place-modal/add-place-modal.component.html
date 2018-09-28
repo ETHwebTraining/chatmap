@@ -1,0 +1,12 @@
+<h2 mat-dialog-title style="text-align: center"> Add a new Place</h2>
+
+<mat-dialog-content fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1%" style="height: 70%">
+
+  <div style="width: 100%" [formGroup]="form">
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-form-field fxFlex>
+        <mat-placeholder>Name</mat-placeholder>
+        <input type="text" matInput formControlName="name">
+      </mat-form-field>
+    </div>

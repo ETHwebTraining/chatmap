@@ -11,6 +11,9 @@ export const environment = {
     projectId: 'chatmap-f9fb4',
     storageBucket: 'chatmap-f9fb4.appspot.com',
     messagingSenderId: '313871994122'
+  },
+  googleMapsKey: {
+    apiKey: ''
   }
 };
 

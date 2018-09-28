@@ -1,0 +1,40 @@
+
+<div fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="1%" style="height: 100%; ">
+
+  <div fxLayout="row">
+    <div fxFlex></div>
+    <div fxFlex class="image">
+      <img class="circle-pic" [src]="user.photoURL" alt="">
+    </div>
+    <div fxFlex></div>
+  </div>
+
+  <div fxLayout="row">
+    <div fxFlex="20%"></div>
+    <div fxFlex>
+      <h3 style="text-align: center; flex-wrap: nowrap">{{user.displayName}}</h3>
+    </div>
+    <div fxFlex fxFlex="20%"></div>
+  </div>
+
+  <div fxLayout="row">
+
+    <div fxFlex="20%"></div>
+
+    <div fxFlex fxLayout="column" style="padding: 0; justify-content:center">
+      <h5>Places Discovered</h5>
+      <p style="text-align: center; flex-wrap: nowrap; margin-top: 0"> {{user.placesDiscovered}}</p>
+    </div>
+
+    <div fxFlex="15%"></div>
+
+    <div fxFlex fxLayout="column" style="padding: 0; justify-content:center">
+      <h5>Places Liked</h5>
+      <p style="text-align: center; flex-wrap: nowrap;  margin-top: 0"> {{user.placesLiked}}</p>
+    </div>
+    <div fxFlex="20%"></div>
+
+  </div>
+
+
+</div>
