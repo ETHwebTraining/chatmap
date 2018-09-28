@@ -22,6 +22,9 @@ import { SharedModule } from '../shared/shared.module';
     MyPlacesComponent,
     UserDetailsComponent,
     SettingsComponent
+  ],
+  entryComponents: [
+    AddPlaceModalComponent,
   ]
 })
 export class ProfileModule { }

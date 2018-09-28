@@ -12,7 +12,7 @@ export const environment = {
     storageBucket: 'chatmap-f9fb4.appspot.com',
     messagingSenderId: '313871994122'
   },
-  // googleMapsKey: {apiKey: 'AIzaSyDXzdskRbzm7eryia7CzQULvumms4kvzPA'}
+  googleMapsKey: {apiKey: 'AIzaSyDXzdskRbzm7eryia7CzQULvumms4kvzPA'}
 };
 
 /*

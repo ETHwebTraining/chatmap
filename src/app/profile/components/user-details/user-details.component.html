@@ -23,14 +23,14 @@
 
     <div fxFlex fxLayout="column" style="padding: 0; justify-content:center">
       <h5>Places Discovered</h5>
-      <p style="text-align: center; flex-wrap: nowrap; margin-top: 0"> {{user.placesDiscovered}}</p>
+      <p style="text-align: center; flex-wrap: nowrap; margin-top: 0"> {{user.placesDiscovered || '0'}}</p>
     </div>
 
     <div fxFlex="15%"></div>
 
     <div fxFlex fxLayout="column" style="padding: 0; justify-content:center">
       <h5>Places Liked</h5>
-      <p style="text-align: center; flex-wrap: nowrap;  margin-top: 0"> {{user.placesLiked}}</p>
+      <p style="text-align: center; flex-wrap: nowrap;  margin-top: 0"> {{user.placesLiked || '0'}}</p>
     </div>
     <div fxFlex="20%"></div>
 
