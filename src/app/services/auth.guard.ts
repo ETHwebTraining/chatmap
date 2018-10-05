@@ -13,22 +13,21 @@ export class AuthGuard implements CanActivate {
   constructor(
     private auth: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.auth.user$
-    .pipe(
-      take(1),
-      map((user) => !!user),
-      tap((auth) => {
-        console.log('in the auth guard', auth);
-        if (!auth) {
-         
-          this.router.navigate(['/auth']);
-        }
-       })
-    );
+      .pipe(
+        take(1),
+        map((user) => !!user),
+        tap((auth) => {
+          console.log('in the auth guard', auth);
+          if (!auth) {
+            this.router.navigate(['/auth']);
+          }
+        })
+      );
   }
 }

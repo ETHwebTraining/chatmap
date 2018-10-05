@@ -27,6 +27,8 @@ export class MapComponent implements OnInit {
       switchMap(([rad, center]) => this.geo.getLocations(rad, center)),
       tap((placs) => console.log('the places', placs))
     );
+
+    this.geo.currentLocation$.subscribe(console.log)
   }
 
   public updateRad(rad: number) {

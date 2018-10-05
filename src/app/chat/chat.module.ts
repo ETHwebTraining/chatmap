@@ -6,11 +6,13 @@ import { MessageListComponent } from './components/message-list/message-list.com
 import { MessageComponent } from './components/message/message.component';
 import { SendMessageComponent } from './components/send-message/send-message.component';
 import { SharedModule } from '../shared/shared.module';
+import { ChatRoutingModule } from './chat-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    ChatRoutingModule
   ],
   declarations: [
     ChatComponent,

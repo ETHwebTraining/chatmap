@@ -69,6 +69,7 @@ import { NavComponent } from './components/nav/nav.component';
     MatSlideToggleModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AgmCoreModule,
     NavComponent
   ]
 })
