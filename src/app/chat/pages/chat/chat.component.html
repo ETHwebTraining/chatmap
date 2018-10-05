@@ -1,0 +1,28 @@
+<div style="position: fixed; top: 0; right:0; width: 100%; padding: 0; z-index: 1;">
+  <mat-toolbar color="primary" fxLayout="row">
+    <div fxFlex>
+      <button mat-icon-button (click)="this.back()">
+        <mat-icon>navigate_before</mat-icon>
+      </button>
+    </div>
+
+    <div fxFlex *ngIf="placeName$ | async as name">
+      <h4 style="text-align: center">{{name}}</h4>
+    </div>
+
+    <div fxFlex fxLayout="row" fxLayoutAlign="end">
+      <app-like></app-like>
+    </div>
+
+  </mat-toolbar>
+</div>
+<div *ngIf="current.currentuser$ | async as user" fxLayout="column" fxLayoutAlign="start" fxLayoutGap="10%" style="height: 100%; ">
+
+  <app-message-list [messages$]="messages$"></app-message-list>
+
+
+  <div fxLayout="row">
+    <app-send-message [isTyping$]="isTyping$" (msg)="onSend($event)" fxFlex [user]="user"></app-send-message>
+  </div>
+
+</div>

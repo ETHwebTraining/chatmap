@@ -1,2 +1,39 @@
+<mat-sidenav-container>
+    <mat-sidenav [opened]="navOpened" (closedStart)="navOpened = false">
+        <mat-nav-list >
 
-<router-outlet></router-outlet>
+            <!-- Defining the nav items of the side nav using mat-list-item -->
+
+            <mat-list-item>
+                <h4 style="text-align: center">Menu</h4>
+            </mat-list-item>
+
+            <ng-container *ngIf="auth.user$ | async">
+
+                    <mat-list-item routerLink="/profile" (click)="navOpened= false">
+                        <mat-icon>person</mat-icon> <p>Profile</p>
+                    </mat-list-item>
+        
+                    <mat-list-item routerLink="/map" (click)="navOpened= false">
+                            <mat-icon>map</mat-icon> <p>Map</p>
+                    </mat-list-item>
+        
+                    <mat-list-item routerLink="/profile/settings" (click)="navOpened= false">
+                            <mat-icon>settings</mat-icon> <p>Settings</p>
+                    </mat-list-item>
+        
+            </ng-container>
+
+
+
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!-- All the content of the app show up here -->
+        <app-nav  (toggleNav)="navOpened = !navOpened"></app-nav>
+
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

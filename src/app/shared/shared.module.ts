@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
+// google maps library
+import { AgmCoreModule } from '@agm/core';
+
 // angular flex area
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -20,8 +23,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
+import { NavComponent } from './components/nav/nav.component';
 
 
 @NgModule({
@@ -30,6 +35,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    AgmCoreModule.forRoot(environment.googleMapsKey),
     FlexLayoutModule,
     MatInputModule,
     MatToolbarModule,
@@ -44,8 +50,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFirestoreModule
   ],
   declarations: [
-
-  ],
+    NavComponent
+  ]
+  ,
   exports: [
     ReactiveFormsModule,
     FormsModule,
@@ -61,7 +68,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MatSnackBarModule,
     MatSlideToggleModule,
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NavComponent
   ]
 })
 export class SharedModule { }

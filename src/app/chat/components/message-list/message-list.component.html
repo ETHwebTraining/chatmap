@@ -1,0 +1,7 @@
+<mat-list *ngIf="msgs$ | async as messages">
+  <div fxLayout="row" *ngFor="let message of messages" style="width: 100%">
+      <app-message fxFlex [message]="message" ></app-message>
+  </div>
+  
+</mat-list>
+<div #bottom></div>

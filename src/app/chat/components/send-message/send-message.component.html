@@ -1,0 +1,14 @@
+<div  style="position: fixed; bottom: 0; right: 0;  width: 100%; padding: 0;">
+  <mat-toolbar>
+
+
+  <mat-form-field fxFlex style="margin: 0; padding: 0" *ngIf="isTyping$ | async as typing" >
+    <input appIsTyping style="margin-bottom: 0" type="text" [formControl]="text" matInput [placeholder]="typing">
+  </mat-form-field>
+
+  <button [disabled]="text.invalid" (click)="onSend()" color="primary" style="height: 40px; width: 20px; border-radius: 10px" mat-button>
+    <mat-icon>send</mat-icon>
+  </button>
+
+</mat-toolbar>
+</div>

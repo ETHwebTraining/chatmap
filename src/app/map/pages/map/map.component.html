@@ -1,0 +1,14 @@
+<agm-map (zoomChange)="updateRad($event)" (centerChange)="updateCenter($event)" *ngIf="geo.currentLocation$ | async as loc" [latitude]="loc.lat" [longitude]="loc.lng" [zoom]="12">
+  <agm-marker [latitude]="loc.lat" [longitude]="loc.lng" >
+      <agm-info-window  [isOpen]="true">YOU</agm-info-window>
+  </agm-marker>
+
+  <ng-container *ngIf="places$ | async as places">
+ 
+    <agm-marker (markerClick)="toChat(place)" *ngFor="let place of places"  [latitude]="place?.pos?.geopoint.latitude" [longitude]="place?.pos?.geopoint.longitude" >
+      <agm-info-window  [isOpen]="true">{{place.name}}</agm-info-window>
+    </agm-marker>
+
+  </ng-container>
+
+</agm-map>
