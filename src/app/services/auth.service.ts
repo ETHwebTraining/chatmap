@@ -1,6 +1,6 @@
 import { FirestoreService } from './firestore.service';
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from 'firebase';
 import { Observable,  of, from, throwError } from 'rxjs';
 import { catchError, map, tap, shareReplay } from 'rxjs/operators';

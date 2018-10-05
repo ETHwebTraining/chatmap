@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 
 // angular fire 2 firestore dependency
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 // google maps library
 import { AgmCoreModule } from '@agm/core';

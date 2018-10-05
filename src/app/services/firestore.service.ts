@@ -7,7 +7,7 @@ import {
   AngularFirestoreDocument,
   AngularFirestoreCollection,
   QueryFn
-} from 'angularfire2/firestore';
+} from '@angular/fire/firestore';
 import { Observable, of, combineLatest } from 'rxjs';
 import { map, take, tap, catchError, retry, switchMap, scan } from 'rxjs/operators';
 import { Transaction } from '@firebase/firestore-types';
